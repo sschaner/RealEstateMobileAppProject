@@ -41,6 +41,14 @@
         public string ImageUrl { get; set; }
 
         /// <summary>
+        /// Gets the full image URL.
+        /// </summary>
+        /// <value>
+        /// The full image URL.
+        /// </value>
+        public string FullImageUrl => AppSettings.ApiUrl + ImageUrl;
+
+        /// <summary>
         /// Gets or sets the address.
         /// </summary>
         /// <value>

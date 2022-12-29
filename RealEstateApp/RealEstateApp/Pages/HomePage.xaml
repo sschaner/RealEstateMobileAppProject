@@ -32,6 +32,10 @@
                     <Label Text="Search..."
                            VerticalOptions="Center" />
                 </HorizontalStackLayout>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="TapSearch"
+                                          Tapped="TapSearch_Tapped" />
+                </Frame.GestureRecognizers>
             </Frame>
 
             <VerticalStackLayout Grid.Row="2"
@@ -71,15 +75,18 @@
                 <Label Text="Top Picks"
                        FontSize="Large" />
                 <CollectionView x:Name="CvTopPicks"
-                                HeightRequest="350">
+                                HeightRequest="350"
+                                SelectionMode="Single"
+                                SelectionChanged="CvTopPicks_SelectionChanged">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout ItemSpacing="20"
                                            Orientation="Horizontal" />
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Frame CornerRadius="25"
-                                   Padding="15" BackgroundColor="White">
+                            <Border Margin="3,3,3,3"
+                                    Padding="10,0,10,0"
+                                    StrokeShape="RoundRectangle 5,5,5,5">
                                 <Grid RowSpacing="5">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
@@ -87,15 +94,15 @@
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <Frame Grid.Row="0"
+                                    <Border Grid.Row="0"
                                            HeightRequest="200"
                                            WidthRequest="250"
-                                           CornerRadius="25"
-                                           Padding="0"
-                                           IsClippedToBounds="True">
+                                            Margin="3,3,3,3"
+                                            Padding="10,0,10,0"
+                                            StrokeShape="RoundRectangle 5,5,5,5">
                                         <Image  Source="{Binding FullImageUrl}"
                                                Aspect="Fill" />
-                                    </Frame>
+                                    </Border>
                                     <Label Grid.Row="1"
                                            FontSize="Subtitle"
                                            Text="{Binding Name}" />
@@ -107,9 +114,9 @@
                                     <Label Grid.Row="3"
                                            FontSize="Subtitle"
                                            TextColor="#1d94ab"
-                                           Text="{Binding Price}" />
+                                           Text="{Binding Price, StringFormat='{0:C2}'}" />
                                 </Grid>
-                            </Frame>
+                            </Border>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
